@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import MaterialList from "../components/MaterialList";
-import Navbar from "../components/Navbar";
+import FilterBar from "../components/FilterBar";
 
 const Home = ({ posts }) => {
   return (
     <Box>
-      <Navbar />
+      {/* <FilterBar /> */}
       <MaterialList posts={posts} />
     </Box>
   );
