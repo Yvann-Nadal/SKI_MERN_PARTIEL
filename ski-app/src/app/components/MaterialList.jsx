@@ -7,29 +7,22 @@ import {
   TextField,
   Typography
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MaterialList = ({ posts }) => {
   const navigate = useNavigate();
   const [select, setSelect] = useState("");
+  const [filter, setFilter] = useState([]);
 
-  const handleChange = event => {
-    setSelect(event.target.value);
+  const styleFilter = value => {
+    const filtered = posts.filter(post => post.style.includes(value));
+    setFilter(filtered);
   };
 
-  const skis = [
-    { id: 1, style: "Skis Freeride" },
-    { id: 2, style: "Skis Freestyle" },
-    { id: 3, style: "Skis de Piste" },
-    { id: 4, style: "Skis Polyvalent" }
-  ];
-
-  const filterSkis = skis.map(ski => {
-    return ski.style;
-  });
-
-  console.log("filterSkis :", filterSkis);
+  useEffect(() => {
+    setFilter(posts);
+  }, [posts]);
 
   return (
     <Box>
@@ -71,12 +64,12 @@ const MaterialList = ({ posts }) => {
             // value={select}
             // defaultValue={"Freeride"}
             label="Style"
-            onChange={handleChange}>
+            onChange={e => styleFilter(e.target.value)}>
             <MenuItem value="">Tous</MenuItem>
-            <MenuItem value={"Skis Freeride"}>Skis Freeride</MenuItem>
-            <MenuItem value={"Skis Freestyle"}>Skis Freestyle</MenuItem>
-            <MenuItem value={"Skis de Piste"}>Skis de Piste</MenuItem>
-            <MenuItem value={"Skis Polyvalent"}>Skis Polyvalent</MenuItem>
+            <MenuItem value={"Freeride"}>Freeride</MenuItem>
+            <MenuItem value={"Freestyle"}>Freestyle</MenuItem>
+            <MenuItem value={"Piste"}>Piste</MenuItem>
+            <MenuItem value={"Polyvalent"}>Polyvalent</MenuItem>
           </Select>
         </FormControl>
         <FormControl>
@@ -103,7 +96,7 @@ const MaterialList = ({ posts }) => {
         </FormControl>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        {posts
+        {filter
           .filter(post => post.isAvailable === true)
           .map(post => (
             <Box
@@ -117,40 +110,34 @@ const MaterialList = ({ posts }) => {
                 padding: 3,
                 cursor: "pointer"
               }}>
-              {filterSkis.map(ski => {
-                if (post.style === select || select === "") {
-                  return (
-                    <Box
-                      sx={{
-                        display: "flex",
-                        backgroundColor: "white",
-                        width: "70%",
-                        margin: 3,
-                        padding: 3,
-                        cursor: "pointer"
-                      }}>
-                      <Box
-                        component="img"
-                        sx={{
-                          marginY: "auto",
-                          height: 108,
-                          width: 655
-                        }}
-                        alt={post.title}
-                        src={post.imageUrl}
-                      />
-                      <Box sx={{ marginY: "auto", marginLeft: 5 }}>
-                        <Typography sx={{ display: "flex" }} variant="h4">
-                          {post.style} {post.title}
-                        </Typography>
-                        <Typography variant="h5">
-                          {post.price} € / Semaine - {post.size} cm
-                        </Typography>
-                      </Box>
-                    </Box>
-                  );
-                }
-              })}
+              <Box
+                sx={{
+                  display: "flex",
+                  backgroundColor: "white",
+                  width: "70%",
+                  margin: 3,
+                  padding: 3,
+                  cursor: "pointer"
+                }}>
+                <Box
+                  component="img"
+                  sx={{
+                    marginY: "auto",
+                    height: 108,
+                    width: 655
+                  }}
+                  alt={post.title}
+                  src={post.imageUrl}
+                />
+                <Box sx={{ marginY: "auto", marginLeft: 5 }}>
+                  <Typography sx={{ display: "flex" }} variant="h4">
+                    {post.style} {post.title}
+                  </Typography>
+                  <Typography variant="h5">
+                    {post.price} € / Semaine - {post.size} cm
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
           ))}
       </Box>
