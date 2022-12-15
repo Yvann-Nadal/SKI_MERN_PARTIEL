@@ -5,7 +5,8 @@ const postSchema = new Schema({
         type: String
     },
     imageUrl: {
-        type: String
+        type: String,
+        default: "https://aeroports-de-lyon.imgix.net/sites/default/files/2021-11/ski_montagne.jpg?fit=max&ixlib=php-3.3.1&w=900&s=d96ffbd9da10aa24f02d3d2105ea3a0c"
     },
     weight: {
         type: Number
@@ -41,6 +42,11 @@ const postSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Booking"
         }
-    ]
+    ],
+    shop: {
+        type: Schema.Types.ObjectId,
+        ref: "Shop"
+    }
+
 });
 module.exports = mongoose.model("Post", postSchema);

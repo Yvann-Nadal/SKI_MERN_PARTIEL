@@ -7,6 +7,7 @@ const cors = require('cors');
 const bookingRouter = require('./src/routers/booking.router');
 const commentRouter = require('./src/routers/comment.router');
 const postRouter = require('./src/routers/post.router');
+const shopRouter = require('./src/routers/shop.router');
 
 connectMongo();
 
@@ -20,6 +21,7 @@ app.get('/', (req, res) => {
 app.use('/api', bookingRouter);
 app.use('/api', commentRouter);
 app.use('/api', postRouter);
+app.use('/api', shopRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server started on port ${process.env.PORT}`);

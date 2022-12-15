@@ -1,4 +1,5 @@
 const Post = require('../models/post.model');
+const Shop = require('../models/shop.model');
 
 const PostController = {
     getAll: async (req, res) => {
@@ -21,6 +22,9 @@ const PostController = {
         try {
             const post = new Post(req.body);
             const newPost = await post.save();
+            const shop = await Shop.findById(req.body.shop);
+            shop.posts.push(post);
+            await shop.save();
             res.send(newPost)
         } catch (error) {
             res.status(400).send(error, 'Something went wrong')
