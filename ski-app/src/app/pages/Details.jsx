@@ -2,7 +2,7 @@ import { Box, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import MaterialDetails from "../components/MaterialDetails";
 
-const Details = ({ posts, fetchPosts }) => {
+const Details = ({ posts, fetchPosts, shops }) => {
   const navigate = useNavigate();
   return (
     <Box>
@@ -14,7 +14,7 @@ const Details = ({ posts, fetchPosts }) => {
         Retour
       </Button>
 
-      <MaterialDetails posts={posts} fetchPosts={fetchPosts} />
+      <MaterialDetails posts={posts} fetchPosts={fetchPosts} shops={shops} />
     </Box>
   );
 };

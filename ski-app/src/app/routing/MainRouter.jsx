@@ -3,9 +3,13 @@ import Home from "../pages/Home";
 import Details from "../pages/Details";
 import { useEffect, useState } from "react";
 import postsService from "../../setup/services/post.service";
+import shopsService from "../../setup/services/shop.service";
+import Login from "../pages/Login";
+import Shop from "../pages/Shop";
 
 const MainRouter = () => {
   const [posts, setPosts] = useState([]);
+  const [shops, setShops] = useState([]);
 
   const fetchPosts = async () => {
     try {
@@ -16,14 +20,27 @@ const MainRouter = () => {
     }
   };
 
+  const fetchShops = async () => {
+    try {
+      const response = await shopsService.getAllShops();
+      setShops(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
   useEffect(() => {
     fetchPosts();
+    fetchShops();
   }, []);
 
   return (
     <Routes>
       <Route path="/" element={<Home posts={posts} />} />
-      <Route path="/details/:id" element={<Details posts={posts} fetchPosts={fetchPosts} />} />
+      <Route path="/details/:id" element={<Details posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
+      <Route path="/login/:id" element={<Login posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
+      <Route path="/shop/:id" element={<Shop posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
     </Routes>
   );
 };

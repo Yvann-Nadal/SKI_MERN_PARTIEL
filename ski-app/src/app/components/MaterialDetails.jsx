@@ -2,7 +2,7 @@ import { Box, Button, Rating, Stack, TextField, Typography } from "@mui/material
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const MaterialDetails = ({ posts, fetchPosts }) => {
+const MaterialDetails = ({ posts, fetchPosts, shops }) => {
   const { id } = useParams();
   const [commentCredentials, setCommentCredentials] = useState({});
   const [bookingCredentials, setBookingCredentials] = useState({});
@@ -143,7 +143,7 @@ const MaterialDetails = ({ posts, fetchPosts }) => {
                     </Box>
                   ))}
                 </Box>
-                <Box sx={{ backgroundColor: "white", height: "50%", padding: 5 }}>
+                <Box sx={{ backgroundColor: "white", height: "50%", padding: 5, marginBottom: 5 }}>
                   <Box
                     component="img"
                     sx={{
@@ -164,10 +164,10 @@ const MaterialDetails = ({ posts, fetchPosts }) => {
                       />
                     </Stack>
                     <Typography sx={{ display: "flex" }} variant="h4">
-                      {post.style} {post.title}
+                      {post.title} {post.style}
                     </Typography>
                     <Typography variant="h5">
-                      {post.price} € / Semaine - {post.size} cm
+                      {post.price} € / Semaine - {post.weight} kg - {post.size} cm
                     </Typography>
                     <Typography variant="body1" sx={{ width: 800, marginY: 5 }}>
                       {post.description}
@@ -186,6 +186,26 @@ const MaterialDetails = ({ posts, fetchPosts }) => {
                       sx={{ marginLeft: 3, marginTop: 1, padding: 2, fontSize: 15 }}>
                       Réserver
                     </Button>
+                    {shops.map(shop => (
+                      <Box
+                        key={shop._id}
+                        sx={{ display: "flex", alignItems: "center", marginY: 3 }}>
+                        <Typography variant="body1" sx={{ marginY: 1 }}>
+                          Disponible chez {shop.name} à {shop.address}
+                        </Typography>
+                        <Box
+                          component="img"
+                          sx={{ marginX: 2, height: "auto", width: 100 }}
+                          src={shop.logoUrl}
+                        />
+                        <Button
+                          variant="contained"
+                          sx={{ padding: 2 }}
+                          onClick={() => navigate(`/login/${shop._id}`)}>
+                          Voir dans la boutique
+                        </Button>
+                      </Box>
+                    ))}
                   </Box>
                 </Box>
               </Box>
