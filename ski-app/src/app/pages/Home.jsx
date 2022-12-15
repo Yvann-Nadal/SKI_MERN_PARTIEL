@@ -7,12 +7,10 @@ const Home = ({ posts }) => {
 
   const searchFilter = value => {
     const filtered = posts.filter(post => post.title.toLowerCase().includes(value.toLowerCase()));
-    console.log(filtered);
     setFilterPosts(filtered);
   };
 
   const weightFilter = value => {
-    console.log(typeof value);
     if (value === "-45") {
       const filtered = posts.filter(post => post.weight < 45);
       setFilterPosts(filtered);
@@ -26,8 +24,6 @@ const Home = ({ posts }) => {
       setFilterPosts(posts);
     }
   };
-
-  console.log(filterPosts);
 
   const styleFilter = value => {
     const filtered = posts.filter(post => post.style.includes(value));

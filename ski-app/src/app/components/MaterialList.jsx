@@ -33,7 +33,7 @@ const MaterialList = ({ filterPosts }) => {
               />
               <Box sx={{ marginY: "auto", marginLeft: 5 }}>
                 <Typography sx={{ display: "flex" }} variant="h4">
-                  {post.style} {post.title}
+                  {post.title} {post.style}
                 </Typography>
                 <Typography variant="h5">
                   {post.price} € / Semaine - {post.size} cm
