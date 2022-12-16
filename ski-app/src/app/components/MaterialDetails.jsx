@@ -95,7 +95,7 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
-                    marginTop: 10
+                    mt: 5
                   }}>
                   <Stack spacing={1}>
                     <Typography variant="h6" component="legend">
@@ -113,7 +113,7 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                     placeholder="Votre nom"
                     name="username"
                     onChange={handleChangeComment}
-                    sx={{ marginY: 1 }}
+                    sx={{ my: 1 }}
                   />
                   <TextField
                     multiline
@@ -121,17 +121,17 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                     placeholder="Commentaire"
                     name="description"
                     onChange={handleChangeComment}
-                    sx={{ width: 500, marginY: 1 }}
+                    sx={{ width: 500, my: 1 }}
                   />
                   <Button
                     variant="contained"
                     color="secondary"
                     onClick={handleCommentSubmit}
-                    sx={{ marginY: 1 }}>
+                    sx={{ my: 1 }}>
                     Ajouter un commentaire
                   </Button>
                   {post.comments.map(comment => (
-                    <Box key={comment._id} sx={{ marginY: 3 }}>
+                    <Box key={comment._id} sx={{ my: 3 }}>
                       <Rating
                         name="half-rating-read"
                         defaultValue={comment.stars}
@@ -139,22 +139,24 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                         readOnly
                       />
                       <Typography variant="h5"> {comment.username} </Typography>
-                      <Typography variant="body1"> {comment.description} </Typography>
+                      <Typography variant="body1" width={500}>
+                        {comment.description}
+                      </Typography>
                     </Box>
                   ))}
                 </Box>
-                <Box sx={{ backgroundColor: "white", height: "50%", padding: 5, marginBottom: 5 }}>
+                <Box sx={{ backgroundColor: "white", height: "50%", padding: 5, mb: 5 }}>
                   <Box
                     component="img"
                     sx={{
-                      marginY: "auto",
+                      my: "auto",
                       height: "auto",
                       width: 800
                     }}
                     alt={post.title}
                     src={post.imageUrl}
                   />
-                  <Box sx={{ marginTop: 5 }}>
+                  <Box sx={{ mt: 5 }}>
                     <Stack spacing={1}>
                       <Rating
                         name="half-rating-read"
@@ -167,9 +169,9 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                       {post.title} {post.style}
                     </Typography>
                     <Typography variant="h5">
-                      {post.price} € / Semaine - {post.weight} kg - {post.size} cm
+                      {post.price.toFixed(2)} € / Semaine - {post.weight} kg - {post.size} cm
                     </Typography>
-                    <Typography variant="body1" sx={{ width: 800, marginY: 5 }}>
+                    <Typography variant="body1" sx={{ width: 800, my: 5 }}>
                       {post.description}
                     </Typography>
                     <TextField
@@ -177,35 +179,35 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
                       placeholder="Entrez votre numéro de téléphone"
                       name="telephoneNumber"
                       onChange={handleChangeBooking}
-                      sx={{ width: 300, marginY: 1 }}
+                      sx={{ width: 300, my: 1 }}
                     />
                     <Button
                       variant="contained"
                       color="secondary"
                       onClick={handleBookingSubmit}
-                      sx={{ marginLeft: 3, marginTop: 1, padding: 2, fontSize: 15 }}>
+                      sx={{ ml: 3, mt: 1, padding: 2, fontSize: 15 }}>
                       Réserver
                     </Button>
-                    {shops.map(shop => (
-                      <Box
-                        key={shop._id}
-                        sx={{ display: "flex", alignItems: "center", marginY: 3 }}>
-                        <Typography variant="body1" sx={{ marginY: 1 }}>
-                          Disponible chez {shop.name} à {shop.address}
-                        </Typography>
-                        <Box
-                          component="img"
-                          sx={{ marginX: 2, height: "auto", width: 100 }}
-                          src={shop.logoUrl}
-                        />
-                        <Button
-                          variant="contained"
-                          sx={{ padding: 2 }}
-                          onClick={() => navigate(`/login/${shop._id}`)}>
-                          Voir dans la boutique
-                        </Button>
-                      </Box>
-                    ))}
+                    {shops
+                      .filter(shop => shop._id === post.shop)
+                      .map(shop => (
+                        <Box key={shop._id} sx={{ display: "flex", alignItems: "center", my: 3 }}>
+                          <Typography variant="body1" sx={{ my: 1 }}>
+                            Disponible chez {shop.name} à {shop.address}
+                          </Typography>
+                          <Box
+                            component="img"
+                            sx={{ mx: 2, height: "auto", width: 100 }}
+                            src={shop.logoUrl}
+                          />
+                          <Button
+                            variant="contained"
+                            sx={{ padding: 2 }}
+                            onClick={() => navigate(`/login/${shop._id}`)}>
+                            Voir dans cette boutique
+                          </Button>
+                        </Box>
+                      ))}
                   </Box>
                 </Box>
               </Box>

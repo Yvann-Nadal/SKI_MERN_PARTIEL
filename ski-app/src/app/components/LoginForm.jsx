@@ -38,7 +38,7 @@ const LoginForm = ({ shops }) => {
           alignItems: "center"
         }}>
         <Box component="img" src={shop.logoUrl} alt={shop.name} sx={{ width: "50%" }} />
-        <Typography variant="h4" sx={{ marginY: 3 }}>
+        <Typography variant="h4" sx={{ my: 3 }}>
           Se connecter
         </Typography>
         <Box
@@ -57,7 +57,7 @@ const LoginForm = ({ shops }) => {
           />
           <Button
             variant="contained"
-            sx={{ marginTop: 2 }}
+            sx={{ mt: 2 }}
             onClick={
               password === credentials.password
                 ? () => navigate(`/shop/${shop._id}`)

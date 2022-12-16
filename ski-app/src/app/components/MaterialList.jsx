@@ -17,26 +17,26 @@ const MaterialList = ({ filterPosts }) => {
                 display: "flex",
                 backgroundColor: "white",
                 width: "70%",
-                margin: 3,
+                m: 3,
                 padding: 3,
                 cursor: "pointer"
               }}>
               <Box
                 component="img"
                 sx={{
-                  marginY: "auto",
+                  my: "auto",
                   height: 108,
                   width: 655
                 }}
                 alt={post.title}
                 src={post.imageUrl}
               />
-              <Box sx={{ marginY: "auto", marginLeft: 5 }}>
+              <Box sx={{ my: "auto", ml: 5 }}>
                 <Typography sx={{ display: "flex" }} variant="h4">
                   {post.title} {post.style}
                 </Typography>
                 <Typography variant="h5">
-                  {post.price} € / Semaine - {post.weight} kg - {post.size} cm
+                  {post.price.toFixed(2)} € / Semaine - {post.weight} kg - {post.size} cm
                 </Typography>
               </Box>
             </Box>

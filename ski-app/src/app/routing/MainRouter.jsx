@@ -6,6 +6,7 @@ import postsService from "../../setup/services/post.service";
 import shopsService from "../../setup/services/shop.service";
 import Login from "../pages/Login";
 import Shop from "../pages/Shop";
+import PostForm from "../pages/PostForm";
 
 const MainRouter = () => {
   const [posts, setPosts] = useState([]);
@@ -40,7 +41,9 @@ const MainRouter = () => {
       <Route path="/" element={<Home posts={posts} />} />
       <Route path="/details/:id" element={<Details posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
       <Route path="/login/:id" element={<Login posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
-      <Route path="/shop/:id" element={<Shop posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
+      <Route path="/shop/:id" element={<Shop posts={posts} fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
+      <Route path="/shop/:id/post/create" element={<PostForm fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
+      <Route path="/shop/:id/post/update/:id" element={<PostForm fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
     </Routes>
   );
 };

@@ -79,7 +79,7 @@ const Home = ({ posts }) => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginTop: 10
+          mt: 10
         }}>
         <TextField
           variant="outlined"
@@ -87,13 +87,13 @@ const Home = ({ posts }) => {
           onChange={e => searchFilter(e.target.value)}
           sx={{
             width: 500,
-            marginRight: 3
+            mr: 3
           }}
         />
         <FormControl>
           <InputLabel id="weight">Poids (en kg)</InputLabel>
           <Select
-            sx={{ width: 300, marginRight: 3 }}
+            sx={{ width: 300, mr: 3 }}
             label="Poids (en kg)"
             onChange={e => weightFilter(e.target.value)}>
             <MenuItem value="">Tout les poids</MenuItem>
@@ -105,7 +105,7 @@ const Home = ({ posts }) => {
         <FormControl>
           <InputLabel id="style">Style</InputLabel>
           <Select
-            sx={{ width: 300, marginRight: 3 }}
+            sx={{ width: 300, mr: 3 }}
             label="Style"
             onChange={e => styleFilter(e.target.value)}>
             <MenuItem value="">Tous</MenuItem>

@@ -10,7 +10,7 @@ const Details = ({ posts, fetchPosts, shops }) => {
         onClick={() => navigate("/")}
         variant="contained"
         color="secondary"
-        sx={{ marginLeft: 19, marginTop: 10 }}>
+        sx={{ ml: 5, mt: 5, fontSize: 25 }}>
         Retour
       </Button>
 

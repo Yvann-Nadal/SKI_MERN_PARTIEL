@@ -43,7 +43,7 @@ const PostController = {
             await Post.findByIdAndDelete(req.params.id);
             res.status(204).send({ message: 'Post deleted successfully' })
         } catch (error) {
-            res.status(400).send({ message: err.message })
+            res.status(400).send({ message: error.message })
         }
     }
 }
