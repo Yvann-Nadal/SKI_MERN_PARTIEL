@@ -1,11 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ShopDetails = ({ posts, fetchPosts, fetchShops, shops }) => {
+const ShopDetails = ({ fetchPosts, fetchShops, shops }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  // console.log(id);
 
   const shop = shops.find(shop => shop._id === id);
 
@@ -14,13 +12,31 @@ const ShopDetails = ({ posts, fetchPosts, fetchShops, shops }) => {
     fetch("http://localhost:8000/api/posts/" + event.target.value, {
       method: "DELETE"
     })
-      // le handleDelete supprime le post mais ne rafraichit pas la page
-      .then(response => response.json())
       .then(() => fetchPosts() && fetchShops());
   };
 
+  console.log(
+    shop.posts.map(post => (
+      <Box key={post._id} sx={{ display: "flex", justifyContent: "center" }}>
+        {post.isAvailable ? (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              backgroundColor: "white",
+              width: "70%",
+              m: 3,
+              padding: 3
+            }}></Box>
+        ) : (
+          <Box></Box>
+        )}
+      </Box>
+    ))
+  );
+
   return (
-    <Box sx={{}}>
+    <Box>
       <Box
         sx={{
           display: "flex",

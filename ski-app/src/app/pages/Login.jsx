@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import LoginForm from "../components/LoginForm";
 
-const Login = ({ posts, fetchPosts, shops }) => {
+const Login = ({ shops }) => {
   return (
     <Box>
-      <LoginForm posts={posts} fetchPosts={fetchPosts} shops={shops} />
+      <LoginForm shops={shops} />
     </Box>
   );
 };

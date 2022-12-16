@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import ShopDetails from "../components/ShopDetails";
 
-const Shop = ({ posts, fetchPosts, shops }) => {
+const Shop = ({  fetchPosts, fetchShops, shops }) => {
   return (
     <Box>
-      <ShopDetails posts={posts} fetchPosts={fetchPosts} shops={shops} />
+      <ShopDetails fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />
     </Box>
   );
 };

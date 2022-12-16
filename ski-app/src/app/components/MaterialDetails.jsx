@@ -62,7 +62,7 @@ const MaterialDetails = ({ posts, fetchPosts, shops }) => {
     })
       .then(response => response.json())
       .then(() => fetchPosts());
-    navigate("/");
+    navigate(`/bookings/${id}`);
   };
 
   const average = () => {

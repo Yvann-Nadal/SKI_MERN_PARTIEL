@@ -7,6 +7,7 @@ import shopsService from "../../setup/services/shop.service";
 import Login from "../pages/Login";
 import Shop from "../pages/Shop";
 import PostForm from "../pages/PostForm";
+import Booking from "../pages/Booking";
 
 const MainRouter = () => {
   const [posts, setPosts] = useState([]);
@@ -30,7 +31,6 @@ const MainRouter = () => {
     }
   };
 
-
   useEffect(() => {
     fetchPosts();
     fetchShops();
@@ -40,10 +40,11 @@ const MainRouter = () => {
     <Routes>
       <Route path="/" element={<Home posts={posts} />} />
       <Route path="/details/:id" element={<Details posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
-      <Route path="/login/:id" element={<Login posts={posts} fetchPosts={fetchPosts} shops={shops} />} />
-      <Route path="/shop/:id" element={<Shop posts={posts} fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
+      <Route path="/login/:id" element={<Login shops={shops} />} />
+      <Route path="/shop/:id" element={<Shop fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
       <Route path="/shop/:id/post/create" element={<PostForm fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
       <Route path="/shop/:id/post/update/:id" element={<PostForm fetchPosts={fetchPosts} fetchShops={fetchShops} shops={shops} />} />
+      <Route path="/bookings/:id" element={<Booking posts={posts} shops={shops} />} />
     </Routes>
   );
 };
